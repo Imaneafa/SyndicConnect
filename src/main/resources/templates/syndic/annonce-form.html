@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier annonce - Syndic</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/syndic.css}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <h1>✏️ Modifier l'annonce</h1>
+    </div>
+
+    <!-- ===== FORMULAIRE MODIFICATION ===== -->
+    <div class="card">
+        <form th:action="@{/syndic/annonces/update}" method="post"
+              th:object="${annonce}" class="form-card">
+
+            <input type="hidden" th:field="*{id}" />
+
+            <label for="titre">Titre</label>
+            <input type="text" id="titre" th:field="*{titre}" placeholder="Titre de l'annonce" required>
+
+            <label for="contenu">Contenu</label>
+            <textarea id="contenu" th:field="*{contenu}" placeholder="Contenu de l'annonce..." required></textarea>
+
+            <button type="submit" class="btn-primary">Modifier</button>
+        </form>
+    </div>
+
+    <a class="back-link" th:href="@{/syndic/annonces}">⬅ Retour aux annonces</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Annonces du Syndic</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/resident.css}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <h1>📢 Annonces du Syndic</h1>
+        <p class="subtitle">
+            Retrouvez toutes les communications officielles du syndic
+        </p>
+    </div>
+
+    <!-- ===== TABLE CARD ===== -->
+    <div class="card">
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="a : ${annonces}">
+                <td class="table-title" th:text="${a.titre}"></td>
+
+                <td class="table-content" th:text="${a.contenu}"></td>
+
+                <td class="table-date"
+                    th:text="${#temporals.format(a.datePublication, 'dd/MM/yyyy HH:mm')}">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Cas : aucune annonce -->
+        <p th:if="${#lists.isEmpty(annonces)}" class="empty-state">
+            📭 Aucune annonce disponible pour le moment.
+        </p>
+
+    </div>
+
+    <a class="back-link" th:href="@{/resident/home}">
+        ⬅ Retour au Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

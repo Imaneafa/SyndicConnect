@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Annonces - Syndic</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/syndic.css}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <h1>📢 Annonces du syndic</h1>
+
+        <a class="btn-primary" th:href="@{/syndic/annonces/new}">
+            ➕ Publier une annonce
+        </a>
+    </div>
+
+    <!-- ===== LISTE DES ANNONCES ===== -->
+    <div class="card">
+
+        <div th:if="${annonces.isEmpty()}">
+            <p>Aucune annonce pour le moment.</p>
+        </div>
+
+        <ul class="annonces-list">
+            <li th:each="a : ${annonces}" class="annonce-item">
+
+                <div class="annonce-content">
+                    <strong th:text="${a.titre}"></strong>
+                    <p th:text="${a.contenu}"></p>
+                </div>
+
+                <div class="annonce-actions">
+                    <a class="btn-icon"
+                       th:href="@{/syndic/annonces/edit/{id}(id=${a.id})}">
+                        ✏️
+                    </a>
+
+                    <form th:action="@{/syndic/annonces/delete/{id}(id=${a.id})}"
+                          method="post"
+                          onsubmit="return confirm('Supprimer cette annonce ?')">
+
+                        <button type="submit" class="btn-danger-icon">
+                            ❌
+                        </button>
+                    </form>
+                </div>
+
+            </li>
+        </ul>
+
+    </div>
+
+    <a class="back-link" th:href="@{/syndic/home}">
+        ⬅ Retour au Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

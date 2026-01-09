@@ -1,0 +1,38 @@
+body {
+    font-family: var(--font-main);
+    background-color: var(--gray-light);
+    color: var(--gray-dark);
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    color: var(--gray-dark);
+}
+
+a {
+    color: var(--blue-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 8px 16px;
+    font-weight: 600;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}

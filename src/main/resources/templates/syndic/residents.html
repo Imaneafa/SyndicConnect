@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des résidents</title>
+
+  <link rel="stylesheet" th:href="@{/css/variables.css}">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" th:href="@{/css/layout.css}">
+  <link rel="stylesheet" th:href="@{/css/syndic.css}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+  <div class="page-header">
+    <h1>👥 Gestion des résidents</h1>
+    <p class="subtitle">Vue globale des habitants de la résidence</p>
+  </div>
+
+  <div class="card">
+
+    <table class="data-table">
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Appartement</th>
+        <th>Problèmes</th>
+        <th>Impayés</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="r : ${residents}">
+
+        <td>
+          <strong th:text="${r.nom}"></strong>
+        </td>
+
+        <td th:text="${r.email}"></td>
+
+        <td>
+                    <span class="badge badge-blue"
+                          th:text="${r.numeroAppartement}">
+                    </span>
+        </td>
+
+        <td>
+                    <span class="badge badge-orange"
+                          th:text="${r.problemes.size()}">
+                    </span>
+        </td>
+
+        <td>
+                    <span class="badge"
+                          th:classappend="${r.nbCotisationsNonPayees > 0} ? 'badge-red' : 'badge-green'"
+                          th:text="${r.nbCotisationsNonPayees}">
+                    </span>
+        </td>
+
+        <td>
+          <form th:action="@{/syndic/residents/delete/{id}(id=${r.id})}"
+                method="post"
+                onsubmit="return confirm('⚠️ Voulez-vous vraiment supprimer ce résident ?');">
+
+            <button class="btn-danger">🗑 Supprimer</button>
+          </form>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <a class="back-link" th:href="@{/syndic/home}">⬅ Retour au dashboard</a>
+
+</div>
+
+</body>
+</html>
+

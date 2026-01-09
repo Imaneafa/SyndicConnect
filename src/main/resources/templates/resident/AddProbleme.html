@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un problème</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/resident.css}">
+</head>
+
+<body>
+<div class="page-container">
+
+    <div class="page-header">
+        <h1>➕ Signaler un problème</h1>
+    </div>
+
+    <div class="card">
+        <form method="post" action="/resident/problemes/add">
+
+            <label>Titre :</label>
+            <input type="text" name="titre" required>
+
+            <label>Description :</label>
+            <textarea name="description" required></textarea>
+
+            <button type="submit" class="btn-primary">Envoyer</button>
+        </form>
+    </div>
+
+    <a class="back-link" th:href="@{/resident/home}">⬅ Retour au Dashboard</a>
+
+</div>
+</body>
+</html>

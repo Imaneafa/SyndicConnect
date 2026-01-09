@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail du problème</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/resident.css}">
+</head>
+
+<body>
+<div class="page-container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <h1>📄 Détail du problème</h1>
+    </div>
+
+    <!-- ===== PROBLEME CARD ===== -->
+    <div class="card">
+        <h2 th:text="${probleme.titre}"></h2>
+        <p class="content" th:text="${probleme.description}"></p>
+
+        <p class="meta">
+            👤 <strong th:text="${probleme.auteur.nom}"></strong>
+        </p>
+
+        <p>
+            Statut :
+            <span th:text="${probleme.statut}"
+                  th:classappend="${probleme.statut=='Résolu'} ? 'status-success' :
+                                  (${probleme.statut=='En cours'} ? 'status-warning' : 'status-danger')">
+            </span>
+        </p>
+
+        <a th:href="@{/resident/problemes/edit/{id}(id=${probleme.id})}">
+            <button class="btn-primary">✏️ Modifier</button>
+        </a>
+    </div>
+
+    <!-- ===== COMMENTAIRES ===== -->
+    <!-- ===== COMMENTAIRES ===== -->
+    <div class="card">
+        <h3>💬 Discussion</h3>
+
+        <div class="comments">
+            <div th:each="c : ${commentaires}"
+                 class="comment"
+                 th:classappend="${c.auteur.email == currentUserEmail}
+                     ? 'comment-resident'
+                     : 'comment-syndic'">
+
+            <span class="author"
+                  th:text="${c.auteur.role == 'SYNDIC'} ? 'Syndic' : ${c.auteur.nom}">
+            </span>
+
+                <p th:text="${c.contenu}"></p>
+            </div>
+        </div>
+
+        <form th:action="@{/resident/problemes/{id}/commentaires/add(id=${probleme.id})}"
+              method="post"
+              class="comment-form">
+
+        <textarea name="contenu"
+                  placeholder="Écrire un commentaire..."
+                  required></textarea>
+
+            <button class="btn-primary">Envoyer</button>
+        </form>
+        <a class="back-link" th:href="@{/resident/problemes}">⬅ Retour à mes problèmes</a>
+    </div>
+
+
+
+</div>
+</body>
+</html>

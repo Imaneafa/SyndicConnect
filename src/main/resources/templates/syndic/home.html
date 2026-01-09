@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Syndic</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+<body>
+
+<div class="page-container">
+
+    <header class="page-header">
+        <h1>🏢 Dashboard Syndic</h1>
+        <a class="logout-btn" th:href="@{/logout}">Déconnexion</a>
+    </header>
+
+    <!-- ===== STAT CARDS ===== -->
+    <section class="stats-grid">
+        <div class="stat-card red">
+            <h2 th:text="${enAttente}"></h2>
+            <p>🔴 En attente</p>
+        </div>
+
+        <div class="stat-card orange">
+            <h2 th:text="${enCours}"></h2>
+            <p>🟠 En cours</p>
+        </div>
+
+        <div class="stat-card green">
+            <h2 th:text="${resolus}"></h2>
+            <p>🟢 Résolus</p>
+        </div>
+
+        <div class="stat-card blue">
+            <h2 th:text="${nbResidents}"></h2>
+            <p>👥 Résidents</p>
+        </div>
+    </section>
+
+    <!-- ===== COTISATIONS ===== -->
+    <section class="info-box">
+        <h3>💰 Cotisations non payées</h3>
+        <p th:text="${cotisationsNonPayees}"></p>
+    </section>
+
+    <!-- ===== ACTIONS ===== -->
+    <section class="actions-grid">
+        <a href="/syndic/problemes" class="action-card">
+            📋
+            <span>Gérer les problèmes</span>
+        </a>
+
+        <a href="/syndic/annonces" class="action-card">
+            📢
+            <span>Gérer les annonces</span>
+        </a>
+
+        <a href="/syndic/cotisations" class="action-card">
+            💳
+            <span>Gérer les cotisations</span>
+        </a>
+
+        <a href="/syndic/residents" class="action-card">
+            👥
+            <span>Gérer les résidents</span>
+        </a>
+    </section>
+
+</div>
+
+</body>
+</html>
+

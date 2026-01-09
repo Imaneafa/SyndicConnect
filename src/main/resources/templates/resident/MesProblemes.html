@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes problèmes</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/resident.css}">
+</head>
+
+<body>
+<div class="page-container">
+
+    <div class="page-header">
+        <h1>📋 Mes problèmes</h1>
+    </div>
+
+    <div class="card">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${problemes}">
+                <td th:text="${p.titre}"></td>
+                <td th:text="${#temporals.format(p.dateCreation,'dd/MM/yyyy')}"></td>
+                <td>
+                    <span th:text="${p.statut}"
+                          th:classappend="${p.statut=='Résolu'} ? 'status-success' :
+                                          (${p.statut=='En cours'} ? 'status-warning' : 'status-danger')">
+                    </span>
+                </td>
+                <td>
+                    <a th:href="@{/resident/problemes/view/{id}(id=${p.id})}" class="btn-primary btn-sm">
+                        Voir détails
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="back-link" th:href="@{/resident/home}">⬅ Retour au Dashboard</a>
+
+</div>
+
+</body>
+</html>

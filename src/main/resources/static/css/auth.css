@@ -1,0 +1,113 @@
+/* ===============================
+   AUTHENTICATION – PREMIUM UI
+   =============================== */
+
+.auth-layout {
+    height: 100vh;
+    background: linear-gradient(135deg, #2563EB, #1E40AF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-container {
+    width: 900px;
+    height: 520px;
+    background: white;
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+}
+
+/* LEFT SIDE */
+.auth-left {
+    flex: 1;
+    background: linear-gradient(160deg, #4F8EFF, #3B5FCC);
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-left h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.auth-left p {
+    font-size: 16px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* RIGHT SIDE */
+.auth-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CARD */
+.auth-card {
+    width: 80%;
+}
+
+.auth-card h2 {
+    margin-bottom: 25px;
+    color: var(--gray-dark);
+}
+
+/* FIELDS */
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.field input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+}
+
+.field input:focus {
+    outline: none;
+    border-color: var(--blue-primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+/* BUTTON */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: var(--blue-primary);
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background: #1E40AF;
+}
+
+/* LINKS */
+.auth-link {
+    margin-top: 18px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.auth-link a {
+    font-weight: 600;
+}

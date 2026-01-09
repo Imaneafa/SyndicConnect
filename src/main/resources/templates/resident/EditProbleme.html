@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier le problème</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/resident.css}">
+</head>
+
+<body>
+<div class="page-container">
+
+    <div class="page-header">
+        <h1>✏️ Modifier le problème</h1>
+    </div>
+
+    <div class="card">
+        <form th:action="@{/resident/problemes/edit/{id}(id=${probleme.id})}" method="post">
+
+            <label>Titre :</label>
+            <input type="text" name="titre" th:value="${probleme.titre}" required>
+
+            <label>Description :</label>
+            <textarea name="description" required th:text="${probleme.description}"></textarea>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Enregistrer</button>
+                <a th:href="@{/resident/problemes/view/{id}(id=${probleme.id})}" class="btn-secondary">Annuler</a>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
+

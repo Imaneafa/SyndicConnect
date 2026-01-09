@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des cotisations</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/syndic.css}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <h1>💰 Gestion des cotisations</h1>
+        <p class="subtitle">Suivi des paiements mensuels</p>
+    </div>
+
+    <!-- ===== FILTRES ===== -->
+    <div class="card filter-card">
+        <form method="get" th:action="@{/syndic/cotisations}" class="filter-form">
+
+            <select name="residentId">
+                <option value="">Tous les résidents</option>
+                <option th:each="r : ${residents}"
+                        th:value="${r.id}"
+                        th:text="${r.nom}">
+                </option>
+            </select>
+
+            <input type="text" name="mois" placeholder="Ex : Janvier 2026">
+
+            <select name="statut">
+                <option value="">Tous les statuts</option>
+                <option value="PAYE">Payé</option>
+                <option value="NON_PAYE">Non payé</option>
+            </select>
+
+            <button class="btn-primary">Filtrer</button>
+        </form>
+    </div>
+
+    <!-- ===== TABLE ===== -->
+    <div class="card">
+
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>Résident</th>
+                <th>Mois</th>
+                <th>Montant</th>
+                <th>Statut</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="c : ${cotisations}">
+
+                <td th:text="${c.resident.nom}"></td>
+
+                <td>
+                    <span class="badge badge-blue"
+                          th:text="${c.mois}">
+                    </span>
+                </td>
+
+                <td>
+                    <strong th:text="${c.montant + ' DH'}"></strong>
+                </td>
+
+                <!-- ===== STATUT ===== -->
+                <td>
+                    <span th:if="${c.statut == 'PAYE'}"
+                          class="badge badge-green">
+                        ✅ Payé
+                    </span>
+
+                    <span th:if="${c.statut == 'NON_PAYE'}"
+                          class="badge badge-red">
+                        ❌ Non payé
+                    </span>
+                </td>
+
+                <!-- ===== ACTION ===== -->
+                <td>
+
+                    <!-- NON PAYÉ → payer -->
+                    <form th:if="${c.statut == 'NON_PAYE'}"
+                          th:action="@{/syndic/cotisations/payer/{id}(id=${c.id})}"
+                          method="post">
+                        <button class="btn-success">Marquer payé</button>
+                    </form>
+
+                    <!-- PAYÉ → annuler -->
+                    <form th:if="${c.statut == 'PAYE'}"
+                          th:action="@{/syndic/cotisations/non-payer/{id}(id=${c.id})}"
+                          method="post">
+                        <button class="btn-secondary">↩ Annuler</button>
+                    </form>
+
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <a class="back-link" th:href="@{/syndic/home}">
+        ⬅ Retour au dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

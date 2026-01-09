@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des problèmes</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+</head>
+<body>
+
+<div class="page-container">
+
+    <header class="page-header">
+        <h1>📋 Gestion des problèmes</h1>
+        <a class="btn secondary" th:href="@{/syndic/home}">⬅ Dashboard</a>
+    </header>
+
+    <!-- ===== FILTRES ===== -->
+    <div class="filter-bar">
+        <a href="?statut=En attente" class="filter red">🔴 En attente</a>
+        <a href="?statut=En cours" class="filter orange">🟠 En cours</a>
+        <a href="?statut=Résolu" class="filter green">🟢 Résolus</a>
+        <a href="/syndic/problemes" class="filter">🔄 Tous</a>
+    </div>
+
+    <!-- ===== TABLE ===== -->
+    <div class="table-card">
+        <table>
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Résident</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="p : ${problemes}">
+                <td th:text="${p.titre}"></td>
+                <td th:text="${p.auteur.nom}"></td>
+                <td th:text="${#temporals.format(p.dateCreation,'dd/MM/yyyy')}"></td>
+
+                <!-- STATUT -->
+                <td>
+                    <span th:if="${p.statut=='En attente'}" class="badge red">En attente</span>
+                    <span th:if="${p.statut=='En cours'}" class="badge orange">En cours</span>
+                    <span th:if="${p.statut=='Résolu'}" class="badge green">Résolu</span>
+                </td>
+
+                <!-- ACTION -->
+                <td>
+                    <a class="btn primary"
+                       th:href="@{/syndic/problemes/{id}(id=${p.id})}">
+                        Détails
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

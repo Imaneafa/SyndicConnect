@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail du problème</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/syndic.css}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <h1 th:text="${probleme.titre}"></h1>
+
+        <span class="status"
+              th:classappend="${probleme.statut == 'Résolu'} ? 'status-success' :
+                              (${probleme.statut == 'En cours'} ? 'status-warning' : 'status-danger')"
+              th:text="${probleme.statut}">
+        </span>
+    </div>
+
+    <!-- ===== PROBLEME CARD ===== -->
+    <div class="card">
+        <p class="label">Description</p>
+        <p class="content" th:text="${probleme.description}"></p>
+
+        <p class="meta">
+            👤 <strong th:text="${probleme.auteur.nom}"></strong>
+        </p>
+    </div>
+
+    <!-- ===== STATUT ===== -->
+    <div class="card">
+        <form th:action="@{/syndic/problemes/{id}/statut(id=${probleme.id})}" method="post" class="status-form">
+            <label>Changer le statut</label>
+            <select name="statut">
+                <option value="En attente" th:selected="${probleme.statut=='En attente'}">En attente</option>
+                <option value="En cours" th:selected="${probleme.statut=='En cours'}">En cours</option>
+                <option value="Résolu" th:selected="${probleme.statut=='Résolu'}">Résolu</option>
+            </select>
+            <button>Mettre à jour</button>
+        </form>
+    </div>
+
+    <!-- ===== COMMENTAIRES ===== -->
+    <div class="card">
+        <h3>💬 Discussion</h3>
+
+        <div class="comments">
+            <div th:each="c : ${commentaires}"
+                 class="comment"
+                 th:classappend="${c.auteur.role == 'SYNDIC'} ? 'comment-syndic' : 'comment-resident'">
+
+                <span class="author"
+                      th:text="${c.auteur.role == 'SYNDIC'} ? 'Syndic' : ${c.auteur.nom}">
+                </span>
+
+                <p th:text="${c.contenu}"></p>
+            </div>
+        </div>
+
+        <form th:action="@{/syndic/problemes/{id}/commentaires/add(id=${probleme.id})}"
+              method="post"
+              class="comment-form">
+
+            <textarea name="contenu" placeholder="Écrire un commentaire..." required></textarea>
+            <button class="btn-primary">Envoyer</button>
+        </form>
+    </div>
+
+    <a class="back-link" th:href="@{/syndic/problemes}">⬅ Retour aux problèmes</a>
+
+</div>
+
+</body>
+</html>

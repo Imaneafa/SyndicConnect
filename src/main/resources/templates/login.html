@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Connexion | SyndicConnect</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body class="auth-layout">
+
+<div class="auth-container">
+
+    <!-- LEFT : Branding -->
+    <div class="auth-left">
+        <h1>SyndicConnect</h1>
+        <p>
+            Plateforme intelligente pour la gestion des résidences,
+            des problèmes et des cotisations.
+        </p>
+    </div>
+
+    <!-- RIGHT : Form -->
+    <div class="auth-right">
+        <div class="auth-card">
+
+            <h2>Connexion</h2>
+
+            <form th:action="@{/login}" method="post">
+
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="username" required>
+                </div>
+
+                <div class="field">
+                    <label>Mot de passe</label>
+                    <input type="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Se connecter
+                </button>
+            </form>
+
+            <p class="auth-link">
+                Pas encore inscrit ?
+                <a th:href="@{/register}">Créer un compte</a>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

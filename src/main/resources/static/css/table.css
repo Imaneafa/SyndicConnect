@@ -1,0 +1,91 @@
+/* ===== FILTER BAR ===== */
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.filter {
+    padding: 8px 14px;
+    background: white;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.filter.red { border-left: 5px solid var(--red-alert); }
+.filter.orange { border-left: 5px solid #F59E0B; }
+.filter.green { border-left: 5px solid var(--green-success); }
+
+/* ===== TABLE CARD ===== */
+.table-card {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: var(--bg-light);
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+}
+
+th {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+tbody tr:hover {
+    background: #F1F5F9;
+}
+
+/* ===== BADGES ===== */
+.badge {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.badge.red {
+    background: #FEE2E2;
+    color: var(--red-alert);
+}
+
+.badge.orange {
+    background: #FEF3C7;
+    color: #B45309;
+}
+
+.badge.green {
+    background: #D1FAE5;
+    color: var(--green-success);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    padding: 8px 14px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    display: inline-block;
+}
+
+.btn.primary {
+    background: var(--blue-primary);
+    color: white;
+}
+
+.btn.secondary {
+    background: #E5E7EB;
+    color: var(--text-dark);
+}
+

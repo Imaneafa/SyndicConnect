@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inscription | SyndicConnect</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body class="auth-layout">
+
+<div class="auth-container">
+
+    <!-- LEFT -->
+    <div class="auth-left">
+        <h1>Bienvenue 👋</h1>
+        <p>
+            Crée ton compte résident et commence à
+            signaler des problèmes et suivre tes cotisations.
+        </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="auth-right">
+        <div class="auth-card">
+
+            <h2>Inscription résident</h2>
+
+            <form th:action="@{/register}" method="post" th:object="${utilisateur}">
+
+                <div class="field">
+                    <label>Nom complet</label>
+                    <input type="text" th:field="*{nom}" required>
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" th:field="*{email}" required>
+                </div>
+
+                <div class="field">
+                    <label>Mot de passe</label>
+                    <input type="password" th:field="*{motDePasse}" required>
+                </div>
+
+                <div class="field">
+                    <label>Numéro d’appartement</label>
+                    <input type="text" th:field="*{numeroAppartement}" required>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Créer mon compte
+                </button>
+            </form>
+
+            <p class="auth-link">
+                Déjà inscrit ?
+                <a th:href="@{/login}">Se connecter</a>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

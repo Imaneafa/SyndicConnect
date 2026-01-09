@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil Resident</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/resident.css}">
+</head>
+
+<body>
+<div class="page-container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <a class="logout-btn" th:href="@{/logout}">🚪 Déconnexion</a>
+        <h1>👋 Bienvenue, <span th:text="${resident.nom}"></span></h1>
+    </div>
+
+    <!-- ===== STAT CARDS ===== -->
+    <section class="stats-grid">
+        <div class="stat-card red">
+            <h2 th:text="${enAttente}"></h2>
+            <p>🔴 En attente</p>
+        </div>
+        <div class="stat-card orange">
+            <h2 th:text="${enCours}"></h2>
+            <p>🟠 En cours</p>
+        </div>
+        <div class="stat-card green">
+            <h2 th:text="${resolus}"></h2>
+            <p>🟢 Résolus</p>
+        </div>
+        <div class="stat-card blue">
+            <h2 th:text="${totalProblemes}"></h2>
+            <p>📊 Total problèmes</p>
+        </div>
+    </section>
+
+    <!-- ===== COTISATION DU MOIS ===== -->
+    <section class="info-box">
+        <h3>💰 Cotisation du mois</h3>
+        <p th:if="${cotisationMois != null}">
+            Statut :
+            <span th:text="${cotisationMois.statut}"
+                  th:classappend="${cotisationMois.statut=='PAYE'} ? 'status-success' : 'status-danger'">
+            </span>
+        </p>
+        <p th:if="${cotisationMois == null}">Aucune cotisation</p>
+    </section>
+
+    <!-- ===== ACTIONS ===== -->
+    <section class="actions-grid">
+        <a th:href="@{/resident/problemes/add}" class="action-card">
+            ➕
+            <span>Signaler un problème</span>
+        </a>
+        <a th:href="@{/resident/problemes}" class="action-card">
+            📄
+            <span>Mes signalements</span>
+        </a>
+        <a th:href="@{/resident/annonces}" class="action-card">
+            📢
+            <span>Voir les annonces</span>
+        </a>
+        <a th:href="@{/resident/cotisations}" class="action-card">
+            💰
+            <span>Mes cotisations</span>
+        </a>
+    </section>
+
+</div>
+</body>
+</html>
+

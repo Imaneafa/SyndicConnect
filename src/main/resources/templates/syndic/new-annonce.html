@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelle annonce - Syndic</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/syndic.css}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <h1>➕ Publier une annonce</h1>
+    </div>
+
+    <!-- ===== FORMULAIRE ===== -->
+    <div class="card">
+        <form th:action="@{/syndic/annonces/save}" method="post" class="form-card">
+
+            <label for="titre">Titre</label>
+            <input type="text" id="titre" name="titre" placeholder="Titre de l'annonce" required>
+
+            <label for="contenu">Contenu</label>
+            <textarea id="contenu" name="contenu" placeholder="Contenu de l'annonce..." required></textarea>
+
+            <button type="submit" class="btn-primary">Publier</button>
+        </form>
+    </div>
+
+    <a class="back-link" th:href="@{/syndic/annonces}">⬅ Retour aux annonces</a>
+
+</div>
+
+</body>
+</html>

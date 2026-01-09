@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes cotisations</title>
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/resident.css}">
+</head>
+
+<body>
+<div class="page-container">
+
+    <div class="page-header">
+        <h1>💰 Mes cotisations</h1>
+    </div>
+
+    <div class="card">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Mois</th>
+                <th>Montant</th>
+                <th>Statut</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${cotisations}">
+                <td th:text="${c.mois}"></td>
+                <td th:text="${c.montant} + ' DH'"></td>
+                <td>
+                        <span th:text="${c.statut}"
+                              th:classappend="${c.statut=='PAYE'} ? 'status-success' : 'status-danger'">
+                        </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="back-link" th:href="@{/resident/home}">⬅ Retour au Dashboard</a>
+
+</div>
+</body>
+</html>
