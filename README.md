@@ -24,6 +24,7 @@ Le syndic peut gérer les problèmes, publier des annonces et suivre les réside
 - Commenter les problèmes (discussion comme un chat)
 - Publier, modifier et supprimer des annonces
 - Voir les cotisations des résidents
+- Gerer les résidents
 
 ---
 
